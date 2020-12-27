@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -27,8 +28,13 @@ public class Playground extends  SurfaceView implements View.OnTouchListener {
     private Dot matrix[][];
     private Dot cat;
 
-    public Playground(Context context) {
-        super(context);
+
+    public Playground(Context context, AttributeSet attrs) {
+        this(context, attrs,0);
+    }
+
+    public Playground(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         getHolder().addCallback(callback);
         matrix = new Dot[ROW][COL];
         for (int i = 0; i < ROW; i++){
@@ -40,7 +46,7 @@ public class Playground extends  SurfaceView implements View.OnTouchListener {
         initGame();
     }
 
-    private Dot getDot(int x,int y){
+    private Dot getDot(int x, int y){
         return matrix[y][x];
     }
 
@@ -218,7 +224,7 @@ public class Playground extends  SurfaceView implements View.OnTouchListener {
         }
     };
 
-    private void initGame() {
+    public void initGame() {
         for (int i = 0;i < ROW; i++){
             for (int j = 0; j < COL; j++) {
                 matrix[i][j].setStatus(Dot.STATUS_OFF);
